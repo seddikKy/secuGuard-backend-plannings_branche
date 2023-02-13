@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecuGARD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/w3.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/theme.css' %}?v=0.0.2">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/messages.css' %}">
+
+
+</head>
+{% include 'components/_messages.html' %}
+<body class="w3-xlight-gray">
+{% for message in messages %}
+{% endfor %}
+{% block top_bar %}
+    {% include 'components/top_bar.html' %}
+{% endblock %}
+<div>
+    {% block breadcrumbs %}
+    {% endblock %}
+</div>
+<div class="w3-container">
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>
+<script>
+    window.onload = function () {
+        setTimeout(function () {
+                let messages = document.getElementById('messages-area')
+                if (messages) {
+                    messages.classList.add('w3-hide')
+                }
+            }, 3000
+        )
+    }
+</script>

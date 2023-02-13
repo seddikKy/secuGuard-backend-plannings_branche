@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="w3-padding-24 w3-container create-object-main-page">
+        <p>
+            Entrez votre login et mot de passe ci-dessous:</p>
+        <form action="{% url 'login' %}" method="post" class="model-form">
+            {% csrf_token %}
+            <table class="w3-table">
+                {{ form.as_table }}
+            </table>
+            <input type="hidden" name="next" value="/"/>
+            <input class="w3-button w3-theme-action w3-round w3-margin-top" type="submit"
+                   value="Connexion">
+
+        </form>
+    </div>
+{% endblock %}

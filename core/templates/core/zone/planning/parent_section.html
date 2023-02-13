@@ -1,0 +1,26 @@
+{%  load  static %}
+<h2>{{ parent_object }}</h2>
+<table class="w3-table w3-bordered w3-margin-top w3-white detail-table">
+    <tr>
+        <th>ID</th>
+        <td>{{ parent_object.pk }}</td>
+    </tr>
+    <tr>
+        <th>Désignation</th>
+        <td>{{ parent_object.designation }}</td>
+    </tr>
+    <tr>
+        <th>État du Planning</th>
+        <td>{{ parent_object.get_plan_state_display }}</td>
+    </tr>
+</table>
+<div class="w3-margin-top">
+    <a href="{% url 'zone_update' pk=parent_object.pk %}" class="w3-button w3-border  w3-round">Modifier</a>
+    <a href="{% url 'zone_delete' pk=parent_object.pk %}" class="w3-button w3-border  w3-round">Supprimer</a>
+    {% if parent_object.plan_state == 1 %}
+        <a href="{% url 'zone_confirm' pk=parent_object.pk %}" class="w3-button w3-theme-l1 border  w3-round">Confirmer</a>
+    {% elif  parent_object.plan_state == 2 %}
+        <a href="{% url 'zone_reopen' pk=parent_object.pk %}" class="w3-button w3-border  w3-round">Réouvrir</a>
+    {% endif %}
+    <a href="{% url 'zone_list' %}" class="w3-button w3-border  w3-round">Retour à liste</a>
+</div>

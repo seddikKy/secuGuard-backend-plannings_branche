@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block breadcrumbs %}
+    <div class="w3-bar w3-dark-gray">
+        <div class="w3-bar-item"><a class="no-text-decoration" href="{% url 'home' %}">Accueil</a></div>
+        <div class="w3-bar-item"><img src="{% static 'core/icons/next_icon_red.svg' %}" height="18"></div>
+    </div>
+{% endblock %}
+{% block content %}
+    <h2>Liste des zones</h2>
+    <a href="{% url 'zone_create' %}" class="w3-button w3-theme-l1 w3-round">Nouveau</a>
+    <table class="w3-table w3-bordered w3-margin-top w3-white">
+        <thead>
+        <th>ID</th>
+        <th>État du planning</th>
+        <th>Désignation</th>
+        <th>Site</th>
+        <th>Entreprise</th>
+        <th>Actions</th>
+        </thead>
+        <tbody>
+        {% for object in object_list %}
+            <tr {% if object.plan_state == 1 %}class="w3-text-gray" {% endif %}>
+                <td>{{ object.pk }}</td>
+                <td>{{ object.get_plan_state_display }}</td>
+                <td>{{ object.designation }}</td>
+                <td>{{ object.site }}</td>
+                <td>{{ object.site.enterprise }}</td>
+                <td class="w3-padding-small">
+                    <a href="{% url 'zone_detail' parent_pk=object.pk  day_index=6 %}"
+                       class="w3-button w3-round w3-padding-small">
+                        {% include 'components/_view_icon.html' with height=19 %}
+                    </a>
+                    <a href="{% url 'zone_update' pk=object.pk %}" class="w3-button w3-round w3-padding-small">
+                        {% include 'components/_modify_icon.html' with height=19 %}
+                    </a>
+                    <a href="{% url 'zone_delete' pk=object.pk %}" class="w3-button w3-round w3-padding-small">
+                        {% include 'components/_delete_icon.html' with height=19 %}
+                    </a>
+
+                    {% if object.plan_state == 1 %}
+                        <a href="{% url 'zone_confirm' pk=object.pk %}"
+                           class="w3-button w3-theme-l1 w3-small w3-round">Confirmer</a>
+                    {% elif object.plan_state == 2 %}
+                        <a href="{% url 'zone_reopen' pk=object.pk %}"
+                           class="w3-button w3-light-gray w3-small w3-round">Réouvrir</a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

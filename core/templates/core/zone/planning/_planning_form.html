@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+   {% include 'core/zone/planning/parent_section.html' %}
+      {#    Child object List#}
+    <div class="w3-padding-32">
+        {#    Tab bar#}
+          {% include 'core/zone/planning/_days_tab_bar.html' %}
+        <div class="w3-padding-16">
+            <h3>{% if object %}
+                Modifier {{ object }}
+            {% else %}
+                Créer un nouveau Check Point
+            {% endif %}</h3>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" class="model-form">
+            {% csrf_token %}
+            <table class="w3-table w3-bordered w3-white">
+                {{ form.as_table }}
+            </table>
+            <div class="w3-margin-top">
+                <input type="submit" value="Enregistrer" class="w3-button w3-theme-l1 w3-round">
+                <a class="w3-button w3-border w3-round" href="javascript:history.back()">Annuler</a>
+            </div>
+
+        </form>
+        <style>
+            td > input {
+                width: 100%;
+                border: none;
+                background-color: #f8f8ca;
+            }
+
+            td > select {
+                width: 100%;
+                height: 40px !important;
+                padding: 2px 8px;
+                border: none;
+                background-color: #f8f8ca;
+            }
+        </style>
+    </div>
+{% endblock %}

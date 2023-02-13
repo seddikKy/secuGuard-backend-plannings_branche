@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block breadcrumbs %}
+
+    <div class="w3-bar w3-dark-gray">
+        <div class="w3-bar-item"><a class="no-text-decoration" href="{% url 'home' %}">Accueil</a></div>
+        <div class="w3-bar-item"><img src="{% static 'core/icons/next_icon_red.svg' %}" height="18"></div>
+    </div>
+{% endblock %}
+{% block content %}
+    <h2>Liste des Sites</h2>
+    <a href="{% url 'site_create' %}" class="w3-btn w3-theme-l1 w3-round">Nouveau</a>
+    <table class="w3-table w3-bordered w3-margin-top w3-white">
+        <thead>
+        <th>ID</th>
+        <th>Désignation</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+        {% for object in object_list %}
+            <tr>
+                <td>{{ object.pk }}</td>
+                <td>{{ object.designation }} ({{ object.enterprise }})</td>
+                <td>
+                    <a href="{% url 'site_detail' pk=object.pk %}"
+                       class="w3-button w3-round w3-padding-small">
+                        {% include 'components/_view_icon.html' with height=19 %}
+                    </a>
+                    <a href="{% url 'site_update' pk=object.pk %}" class="w3-button w3-round w3-padding-small">
+                        {% include 'components/_modify_icon.html' with height=19 %}
+                    </a>
+                    <a href="{% url 'site_delete' pk=object.pk %}" class="w3-button w3-round w3-padding-small">
+                        {% include 'components/_delete_icon.html' with height=19 %}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

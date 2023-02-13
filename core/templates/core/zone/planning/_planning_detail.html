@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include 'core/zone/planning/parent_section.html' %}
+    {#    Child object List#}
+    <div class="w3-padding-32">
+        {#    Tab bar#}
+        {% include 'core/zone/planning/_days_tab_bar.html' %}
+        <div class="w3-padding-16">
+            <h4>{{ object }}</h4>
+            <a class="w3-btn w3-theme-l1 w3-round-small" href="javascript:history.back()">Retour à la liste</a>
+        </div>
+
+        <table class="w3-table w3-bordered w3-white">
+            <tr>
+                <td>ID</td>
+                <th>{{ object.pk }}</th>
+            </tr>
+            <tr>
+                <td>Check Time</td>
+                <th>{{ object.patrol_check_time }}</th>
+            </tr>
+            <tr>
+                <td>Tolérance</td>
+                <th>{{ object.tolerated_time }}</th>
+            </tr>
+            <tr>
+                <td>Observation</td>
+                <th>{{ object.observation }}</th>
+            </tr>
+            <tr>
+                <td>Créé le</td>
+                <th>{{ object.created }}</th>
+            </tr>
+            <tr>
+                <td>Dernière Modification</td>
+                <th>{{ object.modified }}</th>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

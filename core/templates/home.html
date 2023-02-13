@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="w3-padding-top-24">
+    <table class="menu_table w3-margin-top">
+        <tr>
+            <td class="w3-block w3-theme-l4"><a class="w3-block menu-link" href="{% url 'enterprise_list' %}">Gestion
+                Des Entreprises</a></td>
+        </tr>
+        <tr>
+            <td class="w3-block w3-theme-l4"><a class="menu-link  w3-block" href="{% url 'site_list' %}">Gestion Des Sites</a></td>
+        </tr>
+        <tr>
+            <td  class="w3-block w3-theme-l4"><a class="menu-link  w3-block" href="{% url 'zone_list' %}">Gestion Des Zones & Planning</a></td>
+        </tr>
+        <tr>
+            <td  class="w3-block w3-theme-l4"><a class="menu-link  w3-block" href="{% url 'employee_list' %}">Gestion Des Agents</a></td>
+        </tr>
+        <tr>
+            <td  class="w3-block w3-theme-l4"><a class="menu-link  w3-block" href="{% url 'tag_list' %}">Gestion Des Tags</a></td>
+        </tr>
+    </table>
+    </div>
+
+    <style>
+
+        .menu_table {
+            width: 100%;
+            max-width: 400px;
+        }
+
+
+        .menu-link {
+            padding: 8px 16px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+    </style>
+{% endblock %}

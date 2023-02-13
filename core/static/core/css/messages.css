@@ -1,0 +1,24 @@
+.messages {
+    padding: 0;
+    position: fixed;
+    bottom: 5px;
+    right: 30px;
+}
+
+.nobull {
+    list-style-type: none;
+}
+
+.success {
+    background-color: #04AA6D;
+    color: white;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.error {
+    background-color: orange;
+    color: black;
+    padding: 20px;
+    border-radius: 4px;
+}

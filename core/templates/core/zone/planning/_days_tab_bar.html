@@ -1,0 +1,19 @@
+<div class="w3-bar w3-light-gray w3-border-bottom">
+    <a class="w3-bar-item w3-button {% if request.resolver_match.kwargs.day_index == 6 %} w3-white w3-text-theme w3-bold{% else %} {% endif %}"
+       href="{% url 'zone_detail' parent_pk=parent_object.pk day_index=6 %}">Dimache</a>
+    <a class="w3-bar-item w3-button {% if request.resolver_match.kwargs.day_index == 0 %} w3-white w3-text-theme w3-bold{% else %} {% endif %}"
+       href="{% url 'zone_detail' parent_pk=parent_object.pk day_index=0 %}">Lundi</a>
+    <a class="w3-bar-item w3-button {% if request.resolver_match.kwargs.day_index == 1 %} w3-white w3-text-theme w3-bold{% else %}{% endif %}"
+       href="{% url 'zone_detail' parent_pk=parent_object.pk day_index=1 %}">Mardi</a>
+    <a class="w3-bar-item w3-button {% if request.resolver_match.kwargs.day_index == 2 %} w3-white w3-text-theme w3-bold{% else %}{% endif %}"
+       href="{% url 'zone_detail' parent_pk=parent_object.pk day_index=2 %}">Mercredi</a>
+    <a class="w3-bar-item w3-button {% if request.resolver_match.kwargs.day_index == 3 %} w3-white w3-text-theme w3-bold{% else %}{% endif %}"
+       href="{% url 'zone_detail' parent_pk=parent_object.pk day_index=3 %}">Jeudi</a>
+    <a class="w3-bar-item w3-button {% if request.resolver_match.kwargs.day_index == 4 %} w3-white w3-text-theme w3-bold{% else %}{% endif %}"
+       href="{% url 'zone_detail' parent_pk=parent_object.pk day_index=4 %}">Vendredi</a>
+    <a class="w3-bar-item w3-button {% if request.resolver_match.kwargs.day_index == 5 %} w3-white w3-text-theme w3-bold{% else %}{% endif %}"
+       href="{% url 'zone_detail' parent_pk=parent_object.pk day_index=5 %}">Samedi</a>
+    <a class="w3-bar-item w3-button {% if request.resolver_match.kwargs.day_index == 8 %} w3-white w3-text-theme w3-bold{% else %}{% endif %}"
+       href="{% url 'zone_detail' parent_pk=parent_object.pk day_index=8 %}">Jours Férés</a>
+
+</div>
