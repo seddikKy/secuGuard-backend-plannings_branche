@@ -1,8 +1,12 @@
-from django.urls import path, include
+from django.urls import re_path, path, include
 
 from .api import router
-from rest_framework.schemas import get_schema_view
-from rest_framework.documentation import include_docs_urls
+# from rest_framework.schemas import get_schema_view
+# from rest_framework.documentation import include_docs_urls
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
 
 from .views import (EmployeeListView, EmployeeCreateView, EmployeeUpdateView, EmployeeDeleteView,
                     EmployeeDetailView, EnterpriseListView, EnterpriseCreateView, EnterpriseUpdateView,
@@ -13,6 +17,19 @@ from .views import (EmployeeListView, EmployeeCreateView, EmployeeUpdateView, Em
                     ZoneDetailPlanningListView, ZoneDetailPlanningCreateView, ZoneDetailPlanningUpdateView,
                     ZoneDetailPlanningDeleteView, ZoneDetailPlanningDetailView, ZoneConfirmPlanningView,
                     ZoneReopenPlanningView)
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="SecuGard API",
+      default_version='v1',
+      description="This API is used to manage secuGardAPI",
+    #   terms_of_service="https://www.google.com/policies/terms/",
+      contact=openapi.Contact(email="secugard@outlook.fr"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=False,
+   permission_classes=[permissions.AllowAny],
+)
 
 urlpatterns = [
     path('api/', include(router.urls)),
@@ -60,10 +77,14 @@ urlpatterns = [
     path('tags/<int:pk>/delete', TagDeleteView.as_view(), name='tag_delete'),
 
     # docs API path
-    path('docs-api/', include_docs_urls(title='secuGardApi')),
-    path('schema', get_schema_view(
-        title="secuGardApi",
-        description="API for secuGardApi",
-        version="1.0.0"
-    ), name='openapi-schema'),
+    # path('docs-api/', include_docs_urls(title='secuGardApi')),
+    # path('schema', get_schema_view(
+    #     title="secuGardApi",
+    #     description="API for secuGardApi",
+    #     version="1.0.0"
+    # ), name='openapi-schema'),
+
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
